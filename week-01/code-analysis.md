@@ -1,12 +1,15 @@
-# Hello, World code analysis
+# Hello, World! assembly analysis
 
 ## Compilation
 
-```sudo apt update
-sudo apt install build-essential```
+```
+sudo apt update
+sudo apt install build-essential
+```
 
-`gcc -O3 -S hello-world.c`
-
+```
+gcc -O3 -S hello-world.c
+```
 
 ## Analysis
 
