@@ -25,22 +25,22 @@ $ cat hello-world.s
 	.type	main, @function
 main:
 .LCF0:
-0:	addis 2,12,.TOC.-.LCF0@ha
-	addi 2,2,.TOC.-.LCF0@l
+0:	addis 2,12,.TOC.-.LCF0@ha	# Add Immediate Shifted RT,RA,SI
+	addi 2,2,.TOC.-.LCF0@l		# Add Immediate RT,RA,SI
 	.localentry	main,.-main
-	mflr 0
-	addis 4,2,.LC0@toc@ha
-	addi 4,4,.LC0@toc@l
-	li 3,1
-	std 0,16(1)
-	stdu 1,-96(1)
-	bl __printf_chk
+	mflr 0				# Copy the contents of the LR to register Rx
+	addis 4,2,.LC0@toc@ha		# Add Immediate Shifted RT,RA,SI
+	addi 4,4,.LC0@toc@l		# Add Immediate RT,RA,SI
+	li 3,1				# Load Immediate Rx,value
+	std 0,16(1)			# Store Doubleword RS,DS(RA)
+	stdu 1,-96(1)			# Store Doubleword with Update RS,DS(RA)
+	bl __printf_chk			# Call printf
 	nop
-	addi 1,1,96
-	li 3,0
-	ld 0,16(1)
-	mtlr 0
-	blr
+	addi 1,1,96			# Add Immediate RT,RA,SI
+	li 3,0				# Load Immediate Rx,value
+	ld 0,16(1)			# Load Doubleword RT,DS(RA)
+	mtlr 0				# Move to LR register Rx
+	blr				# Branch to link register
 	.long 0
 	.byte 0,0,0,1,128,0,0,0
 	.size	main,.-main
